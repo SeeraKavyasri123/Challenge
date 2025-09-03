@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saree Sales Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8fafc;
+      display: flex;
+      height: 100vh;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    }
+    .sidebar h2 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #b91c1c;
+    }
+    .sidebar a {
+      display: block;
+      margin: 10px 0;
+      text-decoration: none;
+      color: #333;
+      transition: 0.2s;
+    }
+    .sidebar a:hover {
+      color: #b91c1c;
+    }
+    /* Main */
+    .main {
+      flex: 1;
+      padding: 20px 40px;
+      overflow-y: auto;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .topbar h1 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #b91c1c;
+    }
+    .search-box input {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 220px;
+    }
+    /* Sarees grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 15px;
+    }
+    .card-content h2 {
+      font-size: 18px;
+      margin: 0 0 10px;
+      color: #111;
+    }
+    .card-content p {
+      color: #666;
+      margin: 0 0 12px;
+    }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      background: #b91c1c;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn:hover {
+      background: #7f1d1d;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Saree Store</h2>
+    <nav>
+      <a href="#">Dashboard</a>
+      <a href="#">All Sarees</a>
+      <a href="#">Favorites</a>
+      <a href="#">Orders</a>
+      <a href="#">Profile</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="topbar">
+      <h1>Available Sarees</h1>
+      <div class="search-box">
+        <input type="text" id="search" placeholder="Search sarees...">
+      </div>
+    </div>
+
+    <div class="grid" id="sareeGrid">
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2018/08/26/17/07/indian-3630208_1280.jpg" alt="Silk Saree">
+        <div class="card-content">
+          <h2>Silk Saree</h2>
+          <p>$120</p>
+          <button class="btn">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2018/09/20/22/56/indian-3692153_1280.jpg" alt="Designer Saree">
+        <div class="card-content">
+          <h2>Designer Saree</h2>
+          <p>$250</p>
+          <button class="btn">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2018/08/16/20/31/indian-3611115_1280.jpg" alt="Cotton Saree">
+        <div class="card-content">
+          <h2>Cotton Saree</h2>
+          <p>$80</p>
+          <button class="btn">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/indian-1990442_1280.jpg" alt="Wedding Saree">
+        <div class="card-content">
+          <h2>Wedding Saree</h2>
+          <p>$400</p>
+          <button class="btn">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const sareeGrid = document.getElementById('sareeGrid');
+    const cards = sareeGrid.getElementsByClassName('card');
+
+    searchInput.addEventListener('input', function() {
+      const query = searchInput.value.toLowerCase();
+      Array.from(cards).forEach(card => {
+        const name = card.querySelector('h2').textContent.toLowerCase();
+        card.style.display = name.includes(query) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+  </html>
